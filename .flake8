@@ -4,4 +4,6 @@ max-line-length = 160
 exclude =
       env,
       .git,
-      __pycache__
+      __pycache__,
+      .tox,
+      .eggs

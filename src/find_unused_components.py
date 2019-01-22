@@ -1,19 +1,20 @@
+from __future__ import print_function
+
 import argparse
 import glob
 from os.path import exists
 import re
-from typing import Dict, Iterable
 
 
 PATTERN = re.compile(r'^import ([A-Z].+) from .+;$', flags=re.M)
 
 
-def convert_camel_to_kebab(name: str) -> str:
+def convert_camel_to_kebab(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1-\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1-\2', s1).lower()
 
 
-def count_imports_usage(file_path: str, ignore: Iterable = ()) -> Dict[str, int]:
+def count_imports_usage(file_path, ignore=()):
     result = {}
     if not ignore:
         ignore = ('Vue', 'Mixin')
@@ -26,9 +27,9 @@ def count_imports_usage(file_path: str, ignore: Iterable = ()) -> Dict[str, int]
             if any(ignr in i for ignr in ignore):
                 continue
 
-            result[i] = lines.count(f'<{i}')
-            result[i] += lines.count(f'<{i.lower()}')
-            result[i] += lines.count(f'<{convert_camel_to_kebab(i)}')
+            result[i] = lines.count('<{}'.format(i))
+            result[i] += lines.count('<{}'.format(i.lower()))
+            result[i] += lines.count('<{}'.format(convert_camel_to_kebab(i)))
 
     return result
 
@@ -41,12 +42,17 @@ if __name__ == '__main__':
     path = args.path
 
     if not exists(path):
-        print(f'Path "{path}" does not exist')
+        print('Path "{}" does not exist'.format(path))
         exit()
 
-    for filename in glob.iglob(f'{path}/**/*.vue', recursive=True):
+    must_fail = False
+    for filename in glob.iglob('{}/**/*.vue'.format(path), recursive=True):
         counts = count_imports_usage(filename)
         # print(f'{filename}: {counts}')
         for i in counts:
             if counts[i] == 0:
-                print(f'{filename} probably "{i}" is not used')
+                must_fail = True
+                print('{} component "{}" is not used'.format(filename, i))
+
+    if must_fail:
+        exit(1)
