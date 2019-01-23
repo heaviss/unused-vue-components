@@ -1,6 +1,8 @@
-# Find usused vue components
+# Finds imported but unused vue components
 
-Temporary crutch till eslint can do it.
+Made of shit, sticks and regexes.
+
+It will live until eslint can do it for us.
 
 ## Install
 ```
@@ -9,7 +11,7 @@ pip install unused-vue-components
 
 ## Use
 ```
-find_unused_components.py PATH
+find_unused_components.py PATH_TO_SOURCES
 ```
 
 ## Packaging
