@@ -9,6 +9,8 @@ setup(
     description="Find unused vue components",
     keywords=[],
     url="https://github.com/heaviss/unused-vue-components",
+    author="Vladimir Seregin",
+    author_email="31631@rambler.ru",
     license="MIT",
     packages=find_packages(),
     install_requires=[],
@@ -25,4 +27,5 @@ setup(
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',
+    scripts=['src/find_unused_components.py'],
 )

@@ -1,7 +1,7 @@
 version: 2
 defaults: &defaults
   docker:
-    - image: circleci/python:3.6-stretch
+    - image: circleci/python:3.6
 
 jobs:
   build:
@@ -36,13 +36,6 @@ jobs:
             . venv/bin/activate
             tox
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ".git"
-            - "venv"
-            - ".circleci"
-
   deploy:
     <<: *defaults
 
@@ -50,6 +43,13 @@ jobs:
       - checkout
       - restore_cache:
           key: deps-{{ checksum "requirements.txt" }}
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
 
       - run:
           name: init .pypirc
@@ -63,7 +63,6 @@ jobs:
           command: |
             . venv/bin/activate
             python setup.py sdist
-            python setup.py bdist_wheel
 
       - run:
           name: Upload to PyPI

@@ -4,12 +4,12 @@ Temporary crutch till eslint can do it.
 
 ## Install
 ```
-pip install unused_vue_components
+pip install unused-vue-components
 ```
 
 ## Use
 ```
-python -m find_unused_components PATH
+find_unused_components.py PATH
 ```
 
 ## Packaging
