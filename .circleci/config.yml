@@ -36,10 +36,6 @@ jobs:
             . venv/bin/activate
             tox
 
-      # - store_artifacts:
-      #     path: test-reports
-      #     destination: test-reports
-
       - persist_to_workspace:
           root: .
           paths:
