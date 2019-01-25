@@ -4,6 +4,8 @@ This is a toy script to find components that are imported, used in `components` 
 
 Just for fun and learning.
 
+Use [eslint-plugin-vue v5](https://github.com/vuejs/eslint-plugin-vue/releases/tag/v5.0.0-beta.3) when it leaves beta
+
 ## Install
 ```
 pip install unused-vue-components
