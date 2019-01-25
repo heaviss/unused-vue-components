@@ -1,6 +1,6 @@
-# Finds imported but unused vue components
+# Made of shit, sticks and regexes
 
-Made of shit, sticks and regexes.
+If you import component, use it in `components` but don't use in template, ESLint won't see this. That's why this script exists.
 
 It will live until eslint can do it for us.
 
