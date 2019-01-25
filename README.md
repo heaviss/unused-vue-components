@@ -1,8 +1,8 @@
 # Made of shit, sticks and regexes
 
-If you import component, use it in `components` but don't use in template, ESLint won't see this. That's why this script exists.
+This is a toy script to find components that are imported, used in `components` but aren't used in template.
 
-It will live until eslint can do it for us.
+Just for fun and learning.
 
 ## Install
 ```
