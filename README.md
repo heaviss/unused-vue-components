@@ -15,7 +15,3 @@ pip install unused-vue-components
 ```
 find_unused_components.py PATH_TO_SOURCES
 ```
-
-## Packaging
-
-Draft a new github release with tag starting with `v-`, like `v-1.0.1`.
